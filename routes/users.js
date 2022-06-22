@@ -8,10 +8,14 @@ const router = express.Router();
 
 router.post('/', validateSchema(userSchema), async (req, res) => {
   const { email, password } = req.body;
+  const user = await User.findOne({ where: { email } });
+  if (user) {
+    return res.status(409).send();
+  }
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password, salt);
-  const user = await User.create({ email, password: hash });
-  res.send(user);
+  const newUser = await User.create({ email, password: hash });
+  return res.send(newUser);
 });
 
 module.exports = router;
