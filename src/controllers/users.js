@@ -9,7 +9,8 @@ const post = async (req, res) => {
   }
   const hash = hashPassword(password);
   const newUser = await UsersService.create({ email, password: hash });
-  return res.send(newUser);
+  const { dataValues: { password: _, ...filteredUser } } = newUser;
+  return res.send(filteredUser);
 };
 
 module.exports = { post };
