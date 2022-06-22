@@ -1,6 +1,20 @@
 const UsersService = require('../services/users');
 const { hashPassword } = require('../helpers/password');
 
+const get = async (req, res) => {
+  const { authenticatedUser } = req;
+  const id = parseInt(req.params.id, 10);
+  if (authenticatedUser.id !== id) {
+    return res.status(403).send();
+  }
+  const user = await UsersService.findByEmail(authenticatedUser.email);
+  if (!user) {
+    return res.status(404).send();
+  }
+  const { dataValues: { password: _, ...filteredUser } } = user;
+  return res.send(filteredUser);
+};
+
 const post = async (req, res) => {
   const { email, password } = req.body;
   const user = await UsersService.findByEmail(email);
@@ -13,4 +27,7 @@ const post = async (req, res) => {
   return res.send(filteredUser);
 };
 
-module.exports = { post };
+module.exports = {
+  get,
+  post,
+};

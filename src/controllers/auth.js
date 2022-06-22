@@ -9,7 +9,7 @@ const post = async (req, res) => {
   if (!match) {
     return res.status(403).send();
   }
-  const token = signToken({ email: user.email });
+  const token = signToken({ id: user.id, email: user.email });
   return res.send({ token });
 };
 
