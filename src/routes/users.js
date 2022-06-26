@@ -1,6 +1,6 @@
 const express = require('express');
 const UsersController = require('../controllers/users');
-const validateSchema = require('../middlewares/validate-schema');
+const validateBody = require('../middlewares/validate-body');
 const authenticate = require('../middlewares/authenticate');
 const { userSchema } = require('../validations/user');
 
@@ -14,7 +14,7 @@ router.get(
 
 router.post(
   '/',
-  validateSchema(userSchema),
+  validateBody(userSchema),
   UsersController.post,
 );
 

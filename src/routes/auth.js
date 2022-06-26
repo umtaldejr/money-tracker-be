@@ -1,13 +1,13 @@
 const express = require('express');
 const AuthController = require('../controllers/auth');
-const validateSchema = require('../middlewares/validate-schema');
+const validateBody = require('../middlewares/validate-body');
 const { authSchema } = require('../validations/auth');
 
 const router = express.Router();
 
 router.post(
   '/',
-  validateSchema(authSchema),
+  validateBody(authSchema),
   AuthController.post,
 );
 
