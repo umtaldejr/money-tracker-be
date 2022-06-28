@@ -6,7 +6,7 @@ const { signToken } = require('../helpers/token');
 const post = async (req, res, next) => {
   const { email, password } = req.body;
   const user = await UsersService.findByEmail(email);
-  const match = comparePasswords(password, user.password);
+  const match = user ? comparePasswords(password, user.password) : false;
   if (!match) {
     return next(createError(404, 'Invalid credentials'));
   }
