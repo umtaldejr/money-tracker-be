@@ -1,10 +1,12 @@
 const createError = require('http-errors');
 
 describe('post', () => {
+  beforeEach(() => {
+    jest.resetModules();
+  });
+
   describe('when the email is not registered', () => {
     beforeEach(() => {
-      jest.resetModules();
-
       jest.mock('../services/users', () => ({
         findByEmail: () => Promise.resolve(null),
       }));
@@ -34,8 +36,6 @@ describe('post', () => {
 
   describe('when the email is registered', () => {
     beforeEach(() => {
-      jest.resetModules();
-
       jest.mock('../services/users', () => ({
         findByEmail: () => Promise.resolve({
           id: 1,

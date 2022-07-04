@@ -1,7 +1,7 @@
 const createError = require('http-errors');
 const UsersService = require('../services/users');
-const { comparePasswords } = require('../helpers/password');
-const { signToken } = require('../helpers/token');
+const { comparePasswords } = require('../utils/password');
+const { signToken } = require('../utils/token');
 
 const post = async (req, res, next) => {
   const { email, password } = req.body;

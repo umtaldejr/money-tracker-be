@@ -1,5 +1,5 @@
 const createError = require('http-errors');
-const { verifyToken } = require('../helpers/token');
+const { verifyToken } = require('../utils/token');
 
 const authenticate = async (req, res, next) => {
   const token = req.headers.authorization;

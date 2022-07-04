@@ -1,6 +1,6 @@
 const createError = require('http-errors');
 const UsersService = require('../services/users');
-const { hashPassword } = require('../helpers/password');
+const { hashPassword } = require('../utils/password');
 
 const get = async (req, res, next) => {
   const { authenticatedUser } = req;
