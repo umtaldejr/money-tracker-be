@@ -39,7 +39,7 @@ describe('comparePasswords', () => {
     expect(compareSyncSpy).toHaveBeenCalledWith(password, hash);
   });
 
-  describe('when the password an8hd the encrypted password macthes', () => {
+  describe('when the password and the encrypted password macthes', () => {
     it('returns true', () => {
       const password = '123456';
       const hash = '$2a$10$56.5bIgqqWbpXpzHXvFPW.0xdAVvaNdoSSdn5lNKAmI5HCEUAUqlW';
