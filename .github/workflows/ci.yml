@@ -9,11 +9,14 @@ on:
   pull_request:
     branches: [ "*" ]
 
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    environment: money-tracker-be-staging
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
